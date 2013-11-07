@@ -97,8 +97,7 @@ public class ClassHierarchy {
 
 		for (Iterator<? extends OntResource> i = cls.listInstances(true); i.hasNext();) {
 			indent(out, depth);
-			OntResource equipeInstance = i.next();
-			out.println("Instance: " + equipeInstance.getLocalName());
+			out.println("Instance: " + i.next().getLocalName());
 		}
 		//out.println("instances?");
 	}
