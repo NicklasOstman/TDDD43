@@ -2,6 +2,7 @@ package tddd43.theme5.jena;
 
 import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntModel;
+import com.hp.hpl.jena.ontology.OntResource;
 import com.hp.hpl.jena.util.iterator.Filter;
 
 import java.io.PrintStream;
@@ -14,7 +15,7 @@ import java.util.List;
  * Simple demonstration program to show how to list a hierarchy of classes.
  * </p>
  *
- * @author He Tan, Mikael Åsberg
+ * @author He Tan, Mikael ï¿½sberg
  */
 public class ClassHierarchy {
 
@@ -76,10 +77,11 @@ public class ClassHierarchy {
 
 		// TODO: !!! Complete this method to print out the class name in the hierarchy
 		if (!c.isRestriction() && !c.isAnon()) {
-			out.println("classname?");
-
+			out.println("Classname: " + c.getLocalName());
+			//out.println("classname?");
+			
 			// list the instances for this class
-			//showInstance(out, c, depth + 2);
+			showInstance(out, c, depth + 2);
 		}
 	}
 
@@ -92,7 +94,13 @@ public class ClassHierarchy {
 	 */
 	protected void showInstance(PrintStream out, OntClass cls, int depth) {
 		// TODO: !!! Implement the method to present instances of a class
-		out.println("instances?");
+
+		for (Iterator<? extends OntResource> i = cls.listInstances(true); i.hasNext();) {
+			indent(out, depth);
+			OntResource equipeInstance = i.next();
+			out.println("Instance: " + equipeInstance.getLocalName());
+		}
+		//out.println("instances?");
 	}
 
 
