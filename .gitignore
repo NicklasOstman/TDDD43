@@ -1,6 +1,14 @@
 *.class
+.metadata
+/bin
 
 # Package Files #
 *.jar
 *.war
 *.ear
+
+## Generic files to ignore
+*~
+*.lock
+*.DS_Store
+
