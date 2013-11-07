@@ -9,7 +9,7 @@ import com.hp.hpl.jena.rdf.model.ModelFactory;
  * Simple demonstration program in TDDD43
  * </p>
  *
- * @author He Tan, Mikael Åsberg
+ * @author He Tan, Mikael ï¿½sberg
  *
  */
 public class Main {
@@ -22,7 +22,7 @@ public class Main {
 		try {
 			// TODO: change the path to the place where your own ontology 
 			// file is, e.g. "file:///z:/uni.owl"
-			m.read("file:///????.owl");
+			m.read("file:theme3.owl");
 		}
 		catch (com.hp.hpl.jena.shared.WrappedIOException e) {
 			if (e.getCause() instanceof java.io.FileNotFoundException) {
