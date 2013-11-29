@@ -3,6 +3,7 @@
 /bin
 .classpath
 /test
+/align-4.0
 
 # Package Files #
 *.jar
