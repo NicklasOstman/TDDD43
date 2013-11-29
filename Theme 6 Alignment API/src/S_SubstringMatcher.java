@@ -1,4 +1,3 @@
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Properties;
@@ -58,8 +57,7 @@ public class S_SubstringMatcher extends StringDistAlignment implements Alignment
 					
 					if(i == s1.length()-1){
 						set1.add(s1.substring(i-1,i+1));
-						set1.add(s1.substring(i-2,i+1));
-						
+						set1.add(s1.substring(i-2,i+1));	
 					}
 				}
 				//Retrieve 1-,2- and 3-grams (string2)
