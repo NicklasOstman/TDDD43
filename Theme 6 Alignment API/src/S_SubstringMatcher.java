@@ -37,12 +37,13 @@ public class S_SubstringMatcher extends StringDistAlignment implements Alignment
 		try {
 			String s1 = ontology1().getEntityName(cl1);
 			String s2 = ontology2().getEntityName(cl2);
-					
+			double totalLength = 0;
+			
 			//SUBSTRING MATCHER
 			ArrayList<String> set1 = new ArrayList<String>();
 			ArrayList<String> set2 = new ArrayList<String>();
 			if(s1.equals(s2)){
-				return 0;
+				totalLength = 0;
 			}
 			else{
 				//Retrieve 1-,2- and 3-grams (string1)
@@ -76,19 +77,19 @@ public class S_SubstringMatcher extends StringDistAlignment implements Alignment
 					}
 				}
 				
-			}
-			//Calculate length
-			int totalLength = 0;
-			for (Iterator iterator = set1.iterator(); iterator.hasNext();) {
-				String string = (String) iterator.next();
+				//Calculate length	
+				for (Iterator iterator = set1.iterator(); iterator.hasNext();) {
+					String string = (String) iterator.next();
 
-				if (set2.contains(string)){
-					totalLength = totalLength + string.length();
-				}
-			}			
-			double total = Math.abs(1.0 - ((double) totalLength / (((double)s1.length()+(double)s2.length()) * 2)));
+					if (set2.contains(string)){
+						totalLength = totalLength + string.length();
+					}
+				}			
+				totalLength = Math.abs(1.0 - ((double) totalLength / (((double)s1.length()+(double)s2.length()) * 2)));
+			}
 			
-			return total;
+			//Return similarities by calculating 1.0-totalLength
+			return 1.0-totalLength;
 			//return 1.0;
 			
 		} catch (OntowrapException owex) {
