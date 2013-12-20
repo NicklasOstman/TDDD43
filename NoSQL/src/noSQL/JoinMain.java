@@ -58,12 +58,7 @@ public class JoinMain extends Configured implements Tool {
   }
   
   public static void main(String[] args) throws Exception {
-	  String[] arg = {"/Users/patrikbjurling/Documents/TDDD43/NoSQL/test/sbml | model | " +
-		  		"listOfReactions | reaction | listOfProducts | speciesReference_attributes.txt", 
-		  		"/Users/patrikbjurling/Documents/TDDD43/NoSQL/test/sbml | model | " +
-				  		"listOfReactions | reaction | listOfReactants | speciesReference_attributes.txt", 
-				  		"/Users/patrikbjurling/Documents/TDDD43/NoSQL/test/output"};
-    int exitCode = ToolRunner.run(new JoinMain(),arg );
+    int exitCode = ToolRunner.run(new JoinMain(),args );
     System.exit(exitCode);
   }
 }
