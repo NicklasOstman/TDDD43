@@ -6,8 +6,6 @@ package noSQL;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.*;
-
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
@@ -25,9 +23,9 @@ extends Mapper<LongWritable, Text, TextPair, Text> {
 
 		/* here the code for retrieving the triples from file01 and send the prefix of the dewey_pid as key */
 		round++;
-		System.out.println("MAPROUND1 " + round);
-		if(value.toString().contains("P_KK")){
-			String[] split = value.toString().split(" ");
+		System.out.println("MAPROUND1 " + round + " " + value.toString());
+		String[] split = value.toString().split(" ");
+		if(value.toString().contains("P_KK") && split[1].equals("species")){
 			//Retrieve the prefix for the specific reaction
 			String prefix = split[0].substring(0, split[0].length()-4);
 			//Create the textpair
@@ -35,6 +33,7 @@ extends Mapper<LongWritable, Text, TextPair, Text> {
 			System.out.println(dewey_id.toString());
 			//send to reducer with reaction key as dewey_id and identifier for this mapper
 			context.write(dewey_id, new Text("Mapper1"));
+
 		}
 	}
 

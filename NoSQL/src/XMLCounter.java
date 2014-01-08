@@ -28,6 +28,7 @@ public class XMLCounter implements ContentHandler {
 		/* here comes code after the startElement is met */
 		/* for attributes too */
 		
+		//Handle the counting of dewey_id
 		if(dewey_id.isEmpty()){
 			dewey_id.add(1);
 			currentPath.add(qName);
@@ -49,7 +50,7 @@ public class XMLCounter implements ContentHandler {
 		System.out.println("Start Element: " + qName);
 		System.out.println("URI: " + uri + " Localname: " + localName);
 		
-		
+		//Create the files
 		File f = new File("/Users/patrikbjurling/Documents/TDDD43/NoSQL/test/" + path + "_tag.txt");
 		File f1 = new File("/Users/patrikbjurling/Documents/TDDD43/NoSQL/test/" + path + "_texts.txt");
 		File f2 = new File("/Users/patrikbjurling/Documents/TDDD43/NoSQL/test/" + path + "_attributes.txt");
@@ -64,7 +65,6 @@ public class XMLCounter implements ContentHandler {
 				attributeOutput.append(" " + attributes.getLocalName(i) + " " + attributes.getValue(i) + '\n');
 			}
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
@@ -77,7 +77,8 @@ public class XMLCounter implements ContentHandler {
 			e.printStackTrace();
 		}
 	}
-
+	
+	//Helper function
 	private String dewey_idToString(ArrayList<Integer> dewey_id){
 		StringBuilder s = new StringBuilder();
 		for (int i = 0; i<dewey_id.size();i++){
@@ -88,7 +89,7 @@ public class XMLCounter implements ContentHandler {
 		}
 		return s.toString();
 	}
-	
+	//Helper function
 	private String currentPathToString(ArrayList<String> curPatch){
 		StringBuilder s = new StringBuilder();
 		for (int i = 0; i<curPatch.size();i++){
@@ -104,6 +105,7 @@ public class XMLCounter implements ContentHandler {
 			String qName) throws SAXException {
 		/* here comes code after the endElement is met */
 		
+		//Handle the counting of dewey_id
 		if(dewey_id.size() > currentLevel){
 			dewey_id.remove(dewey_id.size()-1);
 			currentPath.remove(dewey_id.size()-1);

@@ -3,8 +3,6 @@ package noSQL;
 
 
 import java.io.IOException;
-import java.util.*;
-
 import org.apache.hadoop.io.*;
 import org.apache.hadoop.mapreduce.Mapper;
 
@@ -20,10 +18,9 @@ extends Mapper<LongWritable, Text, TextPair, Text> {
 
 		round++;
 		System.out.println("MAPROUND2 " + round);
-
+		String[] split = value.toString().split(" ");
 		/* here the code for retrieving the triples from file01 and send the prefix of the dewey_pid as key */
-		if(value.toString().contains("P_KK")){
-			String[] split = value.toString().split(" ");
+		if(split[1].equals("species")){	
 			//Retrieve the prefix for the specific reaction
 			String prefix = split[0].substring(0, split[0].length()-4);
 			TextPair dewey_id = new TextPair(prefix, split[2]);
